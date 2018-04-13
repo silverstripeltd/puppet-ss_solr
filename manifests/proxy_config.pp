@@ -8,7 +8,7 @@ define ss_solr::proxy_config {
 		mode => 0755,
 		owner => "root",
 		group => "root",
-		content => template("solr/solrproxy_configuration.erb"),
+		content => template("ss_solr/solrproxy_configuration.erb"),
 	}
 
 }

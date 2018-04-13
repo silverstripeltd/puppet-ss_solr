@@ -46,13 +46,13 @@ class ss_solr::install inherits ss_solr {
 		group => "tomcat8",
 	}->
 	file { '/usr/local/bin/solr_reload_instance.sh':
-		source => 'puppet:///modules/solr/solr_reload_instance.sh',
+		source => 'puppet:///modules/ss_solr/solr_reload_instance.sh',
 		owner => 'root',
 		group => 'root',
 		mode => 0755,
 	}->
 	file { '/usr/local/bin/solr_commit_instance.sh':
-		source => 'puppet:///modules/solr/solr_commit_instance.sh',
+		source => 'puppet:///modules/ss_solr/solr_commit_instance.sh',
 		owner => 'root',
 		group => 'root',
 		mode => 0755,

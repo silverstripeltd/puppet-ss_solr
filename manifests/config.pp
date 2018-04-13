@@ -1,7 +1,7 @@
 class ss_solr::config inherits ss_solr {
 
 	file { '/usr/share/tomcat8/lib/log4j.properties':
-		source => 'puppet:///modules/solr/log4j.properties',
+		source => 'puppet:///modules/ss_solr/log4j.properties',
 		owner => 'tomcat8',
 		group => 'tomcat8',
 		mode => 0644,
@@ -10,14 +10,14 @@ class ss_solr::config inherits ss_solr {
 	$heap_mb = $ss_solr::java_heap_mb
 	$metaspace_mb = $ss_solr::java_metaspace_mb
 	file { '/etc/default/tomcat8':
-		content => template('solr/tomcat_defaults.erb'),
+		content => template('ss_solr/tomcat_defaults.erb'),
 		owner => 'tomcat8',
 		group => 'tomcat8',
 		mode => 0644,
 	}
 
 	file { '/etc/tomcat8/tomcat-users.xml':
-		content => template('solr/tomcat-users.xml.erb'),
+		content => template('ss_solr/tomcat-users.xml.erb'),
 		owner => 'root',
 		group => 'tomcat8',
 		mode => 0640,

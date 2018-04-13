@@ -44,7 +44,7 @@ define ss_solr::instance(
 	if $solr_config_override {
 		$config_template = template($solr_config_override)
 	} else {
-		$config_template = template('solr/solrconfig.xml.erb')
+		$config_template = template('ss_solr/solrconfig.xml.erb')
 	}
 	file { "/var/lib/solr/${auth_user}v4/solrconfig.xml":
 		ensure => $ensure,
