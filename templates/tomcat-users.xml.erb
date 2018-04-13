@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!-- Managed by puppet -->
+<tomcat-users>
+  <role rolename="manager"/>
+  <role rolename="manager-gui"/>
+  <role rolename="admin-gui"/>
+<%- if @password_manager -%>
+  <user username="<%= @user_manager %>" password="<%= @password_manager %>" roles="admin-gui,manager,manager-gui,manager-script"/>
+<%- end -%>
+<%- if @password_status -%>
+  <user username="<%= @user_status %>" password="<%= @password_status %>" roles="manager-status"/>
+<%- end -%>
+</tomcat-users>
