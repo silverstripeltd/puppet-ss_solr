@@ -1,4 +1,4 @@
-define solr::instance(
+define ss_solr::instance(
 	$ensure = 'present',
 	$auth_password,
 	$auth_user,

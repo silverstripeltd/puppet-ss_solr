@@ -1,4 +1,4 @@
-define solr::proxy_config {
+define ss_solr::proxy_config {
 	$accounts_d = '/var/lib/solr/accounts.d'
 	$solrconfigs = '/sites/solrproxy/solrconfigs'
 	$solrcores = '/var/lib/solr'

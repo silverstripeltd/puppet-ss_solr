@@ -1,4 +1,4 @@
-class solr(
+class ss_solr(
 	$java_version = '8',
 	$java_heap_mb = 8192,
 	$java_metaspace_mb = undef,
@@ -25,8 +25,8 @@ class solr(
 		validate_string($http_proxy)
 	}
 
-	class { 'solr::install': }->
-	class { 'solr::config': }~>
-	class { 'solr::service': }
+	class { 'ss_solr::install': }->
+	class { 'ss_solr::config': }~>
+	class { 'ss_solr::service': }
 
 }

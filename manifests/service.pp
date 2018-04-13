@@ -1,4 +1,4 @@
-class solr::service inherits solr {
+class ss_solr::service inherits ss_solr {
 
 	service { 'tomcat8':
 		ensure => 'running',

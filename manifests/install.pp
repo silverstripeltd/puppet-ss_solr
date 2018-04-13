@@ -1,27 +1,27 @@
-class solr::install inherits solr {
+class ss_solr::install inherits ss_solr {
 
 	Exec {
 		path => "/bin:/usr/bin:/usr/sbin",
 	}
 
 	class { 'oracle_java':
-		version => $solr::java_version,
+		version => $ss_solr::java_version,
 		add_alternative => true,
-		proxy_server => $solr::http_proxy,
+		proxy_server => $ss_solr::http_proxy,
 		proxy_type => 'http',
 	}->
 	package { ['tomcat8', 'tomcat8-admin']:
 		ensure => 'present',
 	}->
-	archive { "/tmp/solr-$solr::solr_version.tgz":
+	archive { "/tmp/solr-$ss_solr::solr_version.tgz":
 		provider     => 'curl',
-		source       => "https://ss-packages.s3.amazonaws.com/solr-$solr::solr_version.tgz",
+		source       => "https://ss-packages.s3.amazonaws.com/solr-$ss_solr::solr_version.tgz",
 		cleanup      => true,
 		extract      => true,
 		extract_path => "/opt",
-		creates      => "/opt/solr-$solr::solr_version/README.txt",
+		creates      => "/opt/solr-$ss_solr::solr_version/README.txt",
 	}->
-	exec { "cp /opt/solr-$solr::solr_version/example/lib/ext/* /usr/share/tomcat8/lib/ && chown tomcat8:tomcat8 -R /usr/share/tomcat8/lib":
+	exec { "cp /opt/solr-$ss_solr::solr_version/example/lib/ext/* /usr/share/tomcat8/lib/ && chown tomcat8:tomcat8 -R /usr/share/tomcat8/lib":
 		unless => 'ls /usr/share/tomcat8/lib/slf4j-*.jar',
 	}->
 	file { '/var/lib/solr':
@@ -36,7 +36,7 @@ class solr::install inherits solr {
 		owner => "www-data",
 		group => "www-data",
 	}->
-	exec { "cp -fr /opt/solr-$solr::solr_version/dist/solr-$solr::solr_version.war /var/lib/solr/solr4.war":
+	exec { "cp -fr /opt/solr-$ss_solr::solr_version/dist/solr-$ss_solr::solr_version.war /var/lib/solr/solr4.war":
 		creates => '/var/lib/solr/solr4.war',
 	}->
 	file { '/var/log/solr':
