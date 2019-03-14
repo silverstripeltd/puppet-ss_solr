@@ -1,7 +1,9 @@
 <?php
 
 define('SOLRPROXY_ACCOUNTS_D', '<%= @accounts_d %>');
+<%- if @drop_user_solrconfig -%>
 define('SOLRPROXY_DROP_SOLRCONFIGS', 'yep');
+<%- end -%>
 define('SOLRPROXY_SOLR_CORES', '<%= @solrcores %>');
 define('SOLRPROXY_BACKEND', '<%= @backend %>');
 define('SOLRPROXY_TOMCAT_GROUP', 'tomcat8');
