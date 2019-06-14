@@ -6,7 +6,7 @@ define ss_solr::proxy_config(
 	$drop_user_solrconfig = true,
 ){
 	file { $name:
-		mode => 0755,
+		mode => "0755",
 		owner => "root",
 		group => "root",
 		content => template("ss_solr/solrproxy_configuration.erb"),
