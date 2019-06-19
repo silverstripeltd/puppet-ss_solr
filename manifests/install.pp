@@ -17,6 +17,7 @@ class ss_solr::install inherits ss_solr {
 	}->
 	exec { "cp /opt/solr-${ss_solr::solr_version}/example/lib/ext/* /usr/share/tomcat8/lib/ && chown tomcat8:tomcat8 -R /usr/share/tomcat8/lib":
 		unless => 'ls /usr/share/tomcat8/lib/slf4j-*.jar',
+		notify => Service['tomcat8'],
 	}->
 	file { '/var/lib/solr':
 		ensure => 'directory',
