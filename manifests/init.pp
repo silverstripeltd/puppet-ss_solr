@@ -1,6 +1,7 @@
 class ss_solr(
 	$java_heap_mb = 8192,
 	$java_metaspace_mb = undef,
+	$java_allow_unsafe_resource_loading = false,
 	$solr_version = '4.5.1',
 	$password_manager = undef,
 	$password_status = undef,

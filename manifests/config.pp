@@ -9,6 +9,7 @@ class ss_solr::config inherits ss_solr {
 
 	$heap_mb = $ss_solr::java_heap_mb
 	$metaspace_mb = $ss_solr::java_metaspace_mb
+	$allow_unsafe_resource_loading = $ss_solr::java_allow_unsafe_resource_loading
 	file { '/etc/default/tomcat8':
 		content => template('ss_solr/tomcat_defaults.erb'),
 		owner => 'tomcat8',
