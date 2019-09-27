@@ -51,6 +51,24 @@ class ss_solr::install inherits ss_solr {
 		owner => 'root',
 		group => 'root',
 		mode => "0755",
+	}->
+ 	file { '/usr/local/bin/solr_check_instance.sh':
+		source => 'puppet:///modules/ss_solr/solr_check_instance.sh',
+		owner => 'root',
+		group => 'root',
+		mode => "0755",
+	}->
+	file { '/usr/local/bin/solr_ensure_instance.sh':
+		source => 'puppet:///modules/ss_solr/solr_ensure_instance.sh',
+		owner => 'root',
+		group => 'root',
+		mode => "0755",
+	}->
+	file { '/usr/local/bin/solr_fixperms_instance.sh':
+		source => 'puppet:///modules/ss_solr/solr_fixperms_instance.sh',
+		owner => 'root',
+		group => 'root',
+		mode => "0755",
 	}
 
 }
