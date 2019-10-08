@@ -19,9 +19,9 @@ for core in $(find /var/lib/solr -maxdepth 2 -mindepth 2 -path "$target" -type d
 
 	index=$(basename $core)
 	echo "Checking '$instance/$index'"
-	failure=$(echo "$status" | jq ".initFailures.$index")
+	failure=$(echo "$status" | jq ".initFailures[\"$index\"]")
 	ping=$(curl "http://localhost:8080/$instance/$index/admin/ping?wt=json" -sS -o /dev/null -w "%{http_code}")
-	uptime=$(echo "$status" | jq ".status.$index.uptime")
+	uptime=$(echo "$status" | jq ".status[\"$index\"].uptime")
 
 	if [ "$failure" !=  "null" ]; then
 		echo "Failed core $core, index $index has failure $failure"
