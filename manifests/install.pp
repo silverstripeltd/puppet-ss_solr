@@ -12,6 +12,7 @@ class ss_solr::install inherits ss_solr {
 		source       => "https://ss-packages.s3.amazonaws.com/solr-${ss_solr::solr_version}.tgz",
 		cleanup      => true,
 		extract      => true,
+    proxy_server => undef,
 		extract_path => '/opt',
 		creates      => "/opt/solr-${ss_solr::solr_version}/README.txt",
 	}

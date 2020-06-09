@@ -7,6 +7,7 @@ class ss_solr(
 	$password_status = undef,
 	$user_manager = undef,
 	$user_status = undef,
+  $http_proxy = undef,
 ) {
 
 	# e.g. '8', '7u80', see https://github.com/antoineco/aco-oracle_java#a-couple-of-examples
