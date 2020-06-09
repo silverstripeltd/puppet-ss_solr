@@ -19,7 +19,7 @@ class ss_solr(
 	# aws s3 cp ~/Downloads/solr-4.10.4.tgz s3://ss-packages/solr-4.10.4.tgz --profile silverstripe
 	validate_string($solr_version)
 
-	class { 'ss_solr::install': }->
-	class { 'ss_solr::config': }~>
-	class { 'ss_solr::service': }
+	class { 'ss_solr::install': }
+	-> class { 'ss_solr::config': }
+	~> class { 'ss_solr::service': }
 }
