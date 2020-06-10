@@ -36,14 +36,14 @@ define ss_solr::instance(
 	}
 
 	# Instance-supplied values take precedence over solr server settings ("default").
-	if $solr_auto_commit_max_sec {
+	if defined('$solr_auto_commit_max_sec') {
 		$auto_commit = $solr_auto_commit_max_sec * 1000
-	} elsif $solr_auto_commit_max_sec_default {
+	} elsif defined('$solr_auto_commit_max_sec_default') {
 		$auto_commit = $solr_auto_commit_max_sec_default * 1000
 	}
-	if $solr_auto_soft_commit_max_sec {
+	if defined('$solr_auto_soft_commit_max_sec') {
 		$auto_soft_commit = $solr_auto_soft_commit_max_sec * 1000
-	} elsif $solr_auto_soft_commit_max_sec_default {
+	} elsif defined('$solr_auto_soft_commit_max_sec_default') {
 		$auto_soft_commit = $solr_auto_soft_commit_max_sec_default * 1000
 	}
 	if $solr_config_override {
