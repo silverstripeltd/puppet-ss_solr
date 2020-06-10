@@ -2,10 +2,10 @@ define ss_solr::instance(
 	$ensure = 'present',
 	$auth_password,
 	$auth_user,
-	$solr_auto_commit_max_sec = undef,
-	$solr_auto_soft_commit_max_sec = undef,
+	$solr_auto_commit_max_sec = 120,
+	$solr_auto_soft_commit_max_sec = 60,
 	$solr_default_spellchecker_field = undef,
-	$solr_config_override = undef,
+	$solr_config_override = 'ss_solr/solrconfig.xml.erb',
 ){
 
 	# Salt should really be random, but as long as auth_password is random, we're probably OK
@@ -34,23 +34,7 @@ define ss_solr::instance(
 		mode => '0664',
 		content => "<?xml version=\"1.0\" encoding=\"UTF-8\" ?><solr></solr>\n"
 	}
-
-	# Instance-supplied values take precedence over solr server settings ("default").
-	if defined('$solr_auto_commit_max_sec') {
-		$auto_commit = $solr_auto_commit_max_sec * 1000
-	} elsif defined('$params::solr_auto_commit_max_sec_default') {
-		$auto_commit = $params::solr_auto_commit_max_sec_default * 1000
-	}
-	if defined('$solr_auto_soft_commit_max_sec') {
-		$auto_soft_commit = $solr_auto_soft_commit_max_sec * 1000
-	} elsif defined('$params::solr_auto_soft_commit_max_sec_default') {
-		$auto_soft_commit = $params::solr_auto_soft_commit_max_sec_default * 1000
-	}
-	if $solr_config_override {
-		$config_template = template($solr_config_override)
-	} else {
-		$config_template = template('ss_solr/solrconfig.xml.erb')
-	}
+	$config_template = template($solr_config_override)
 	file { "/var/lib/solr/${auth_user}v4/solrconfig.xml":
 		ensure => $ensure,
 		owner => 'www-data',
