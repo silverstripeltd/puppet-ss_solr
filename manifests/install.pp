@@ -3,16 +3,25 @@ class ss_solr::install inherits ss_solr {
 	Exec {
 		path => '/bin:/usr/bin:/usr/sbin',
 	}
-
+	if ss_solr::multithreaded{
+			$threads = $facts['processors']['count']
+		}else{
+			$threads = 1
+		}
 	package { ['openjdk-8-jre', 'tomcat8', 'tomcat8-admin']:
 		ensure => 'present',
 	}
+	->file { 'title':
+		ensure => 'present',
+		content => template('ss_solr/server.xml.erb'),
+		path => '/var/lib/tomcat8/conf/server.xml'
+	}	
 	-> archive { "/tmp/solr-${ss_solr::solr_version}.tgz":
 		provider     => 'curl',
 		source       => "https://ss-packages.s3.amazonaws.com/solr-${ss_solr::solr_version}.tgz",
 		cleanup      => true,
 		extract      => true,
-    proxy_server => $ss_solr::http_proxy,
+		proxy_server => $ss_solr::http_proxy,
 		extract_path => '/opt',
 		creates      => "/opt/solr-${ss_solr::solr_version}/README.txt",
 	}

@@ -3,6 +3,7 @@ class ss_solr(
 	$java_metaspace_mb = undef,
 	$java_allow_unsafe_resource_loading = false,
 	$solr_version = '4.5.1',
+  $multithreaded = false,
 	$password_manager = undef,
 	$password_status = undef,
 	$user_manager = undef,
