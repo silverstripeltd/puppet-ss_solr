@@ -2,8 +2,8 @@ define ss_solr::instance(
 	$ensure = 'present',
 	$auth_password,
 	$auth_user,
-	$solr_auto_commit_max_sec = 120,
-	$solr_auto_soft_commit_max_sec = 60,
+	$solr_auto_commit_max_sec = 300,
+	$solr_auto_soft_commit_max_sec = 120,
 	$solr_default_spellchecker_field = undef,
 	$solr_config_override = 'ss_solr/solrconfig.xml.erb',
 ){
