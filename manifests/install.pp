@@ -1,14 +1,24 @@
 class ss_solr::install inherits ss_solr {
-
 	Exec {
-		path => '/bin:/usr/bin:/usr/sbin',
+			path => "/bin:/usr/bin:/usr/sbin",
 	}
 	if ss_solr::multithreaded{
 			$threads = $facts['processors']['count']
 		}else{
 			$threads = 1
 		}
-	package { ['openjdk-8-jre', 'tomcat8', 'tomcat8-admin']:
+	if $facts['lsbdistcodename'] == 'jessie' {
+		if $facts['java_major_version'] == '8' {
+			notify {'yay java8 is installed':}
+		}else{
+			notify {"oh no ${facts['java_version']} is installed":}
+		}
+	}else{
+		package{'openjdk-8-jre':
+			ensure => present
+		}
+	}
+	package { ['tomcat8', 'tomcat8-admin']:
 		ensure => 'present',
 	}
 	->file { 'title':
