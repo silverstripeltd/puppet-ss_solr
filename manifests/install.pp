@@ -19,6 +19,9 @@ class ss_solr::install inherits ss_solr {
 			owner => 'tomcat8',
 			group => 'tomcat8',
 		}
+		package{"jq":
+			ensure => installed
+		}
 		# Install default jre to enable us to use update-alternatives correctly
 		package{"libecj-java":
 			ensure => installed
