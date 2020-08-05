@@ -1,9 +1,4 @@
 class ss_solr::install inherits ss_solr {
-	if ss_solr::multithreaded{
-			$threads = $facts['processors']['count']
-	} else {
-			$threads = 1
-	}
 	if $facts['lsbdistcodename'] == 'jessie' {
 		notice("Your system is not compatible with this Puppet6 implementation. Please use the Puppet3 version.")
 	} else {
@@ -141,12 +136,6 @@ class ss_solr::install inherits ss_solr {
 	-> exec { "cp /opt/solr-${ss_solr::solr_version}/example/lib/ext/* /usr/share/tomcat8/lib/ && chown tomcat8:tomcat8 -R /usr/share/tomcat8/lib":
 		unless => 'ls /usr/share/tomcat8/lib/slf4j-*.jar',
 		notify => Service['tomcat8'],
-	}
-
-	file { '/var/lib/tomcat8/conf/server.xml':
-		ensure => 'present',
-		content => template('ss_solr/server.xml.erb'),
-		path => '/var/lib/tomcat8/conf/server.xml'
 	}
 	-> file { '/var/lib/solr':
 		ensure => 'directory',
