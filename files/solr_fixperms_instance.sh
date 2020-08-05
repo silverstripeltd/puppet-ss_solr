@@ -24,5 +24,7 @@ for core in $(find /var/lib/solr -maxdepth 2 -mindepth 2 -path "$target" -type d
 	tomcat8="( -not -user tomcat8 -o -not -group tomcat8 )"
 	tomcat8fix='echo "Fixing {}"; chown tomcat8:tomcat8 {}'
 	find "/var/lib/solr/$instance/$index/core.properties" -maxdepth 0 $tomcat8 -exec bash -c "$tomcat8fix" \;
-	find "/var/lib/solr/$instance/$index/data" $tomcat8 -exec bash -c "$tomcat8fix" \;
+	if [ -d "/var/lib/solr/$instance/$index/data" ]; then
+		find "/var/lib/solr/$instance/$index/data" $tomcat8 -exec bash -c "$tomcat8fix" \;
+	fi
 done
