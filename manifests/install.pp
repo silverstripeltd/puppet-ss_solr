@@ -24,6 +24,9 @@ class ss_solr::install inherits ss_solr {
 		-> package{"default-jre":
 			ensure => installed
 		}
+		package{"libel-api-java":
+			ensure => purged
+		}
 
 		# Install latest java 8 by unpacking an archive from S3.
 		$install_path = '/usr/java'
