@@ -4,23 +4,24 @@ class ss_solr::config inherits ss_solr {
 		source => 'puppet:///modules/ss_solr/log4j.properties',
 		owner => 'tomcat8',
 		group => 'tomcat8',
-		mode => 0644,
+		mode => '0644',
 	}
 
 	$heap_mb = $ss_solr::java_heap_mb
 	$metaspace_mb = $ss_solr::java_metaspace_mb
+	$allow_unsafe_resource_loading = $ss_solr::java_allow_unsafe_resource_loading
 	file { '/etc/default/tomcat8':
 		content => template('ss_solr/tomcat_defaults.erb'),
 		owner => 'tomcat8',
 		group => 'tomcat8',
-		mode => 0644,
+		mode => '0644',
 	}
 
 	file { '/etc/tomcat8/tomcat-users.xml':
 		content => template('ss_solr/tomcat-users.xml.erb'),
 		owner => 'root',
 		group => 'tomcat8',
-		mode => 0640,
+		mode => '0640',
 	}
 
 	$password_manager = $ss_solr::password_manager
@@ -31,7 +32,7 @@ class ss_solr::config inherits ss_solr {
 		content => "0 3 * * * root find /var/log/solr -type f -mtime +30 -delete 2>&1 | logger -t solr-log-purge\n",
 		owner => 'root',
 		group => 'root',
-		mode => 0640,
+		mode => '0640',
 	}
 }
 

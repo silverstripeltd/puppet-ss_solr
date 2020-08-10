@@ -28,6 +28,9 @@ JAVA_OPTS=" \
 <%- if @metaspace_mb -%>
 	-XX:MaxMetaspaceSize=<%= @metaspace_mb %>m \
 <%- end -%>
+<%- if @allow_unsafe_resource_loading -%>
+	-Dsolr.allow.unsafe.resourceloading=true \
+<%- end -%>
 	-XX:+UseConcMarkSweepGC \
 	-XX:-CMSParallelRemarkEnabled \
 	-server -Djava.awt.headless=true \

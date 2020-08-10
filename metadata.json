@@ -1,20 +1,31 @@
 {
-  "name": "silverstripe-ss_puppet",
-  "version": "1.0.0",
+  "name": "silverstripe-ss_solr",
+  "version": "2.0.0",
   "author": "SilverStripe Ltd",
   "summary": "Installs a solr setup for SSP and CWP",
   "license": "BSD-3-Clause",
-  "source": "https://github.com/silverstripeltd/puppet-ss_puppet",
-  "project_page": "https://github.com/silverstripeltd/puppet-ss_puppet",
-  "issues_url": "https://github.com/silverstripeltd/puppet-ss_puppet/issues",
+  "source": "https://github.com/silverstripeltd/puppet-ss_solr",
+  "project_page": "https://github.com/silverstripeltd/puppet-ss_solr",
+  "issues_url": "https://github.com/silverstripeltd/puppet-ss_solr/issues",
   "dependencies": [
+    {
+      "name": "puppet/archive",
+      "version_requirement": ">= 4.5.0 < 5.0.0"
+    }
   ],
   "data_provider": null,
   "operatingsystem_support": [
     {
       "operatingsystem": "Debian",
       "operatingsystemrelease": [
-        "8"
+        "8", 
+        "9"
+      ]
+    },
+    {
+      "operatingsystem": "Ubuntu",
+      "operatingsystemrelease": [
+        "18.04"
       ]
     }
   ],
